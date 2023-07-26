@@ -17,7 +17,7 @@ public class CustomersServiceImpl implements CustomersService {
 	@Autowired
 	private CustomersRepository customerRepository;
 
-	public Customers saveOrUpdateCustomer(Customers customers) {
+	public Customers saveNewCustomer(Customers customers) {
 		Customers newCustomer;
 		Customers existingCustomer = null;
 
@@ -46,7 +46,6 @@ public class CustomersServiceImpl implements CustomersService {
 		return customer;
 	}
 
-	@Override
 	public String deleteCustomer(Long customerId) {
 		Customers customer = customerRepository.findByCustomerId(customerId);
 		if (customer != null)
@@ -55,6 +54,17 @@ public class CustomersServiceImpl implements CustomersService {
 			throw new NotFoundException("Customer with id : '" + customerId + "' not Exist");
 		return "Customer with id : '" + customerId + "' deleted Successfully";
 
+	}
+
+	public Customers updateCustomer(Long customerId, Customers customer) {
+
+		Customers customerData = customerRepository.findByCustomerId(customerId);
+		if (customerData == null)
+			throw new NotFoundException("Customer with id : '" + customerId + "' not Exist");
+		customer.setCustomerId(customerId);
+		Customers customerUpdated = customerRepository.save(customer);
+
+		return customerUpdated;
 	}
 
 }

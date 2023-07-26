@@ -6,7 +6,9 @@ import com.greensoft.springboot.entity.Customers;
 
 public interface CustomersService {
 
-	public Customers saveOrUpdateCustomer(Customers customers);
+	public Customers saveNewCustomer(Customers customers);
+
+	public Customers updateCustomer(Long customerId, Customers customer);
 
 	public List<Customers> getAllCustomers();
 
