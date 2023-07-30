@@ -1,16 +1,22 @@
 package com.greensoft.springboot.dto;
 
-import javax.persistence.Column;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import lombok.Data;
 
+import javax.validation.constraints.*;
+
+@Data
 public class UsersDto {
 
+
+    @NotEmpty
     private Long userId;
     private String userName;
+    @Size(min = 6,max = 10)
     private String password;
+    @Email
     private String  email;
+    @Size(min = 10, max = 10)
+
     private Long mobileNo;
     private String firstName;
     private String middleName;

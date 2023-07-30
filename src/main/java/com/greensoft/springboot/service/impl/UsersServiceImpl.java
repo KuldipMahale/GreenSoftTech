@@ -1,16 +1,20 @@
 package com.greensoft.springboot.service.impl;
 
 import com.greensoft.springboot.dto.UsersDto;
+import com.greensoft.springboot.entity.Customers;
 import com.greensoft.springboot.entity.Users;
+import com.greensoft.springboot.exception.NotFoundException;
 import com.greensoft.springboot.repository.CustomersRepository;
 import com.greensoft.springboot.repository.UsersRepo;
 import com.greensoft.springboot.service.UsersService;
 import com.greensoft.springboot.repository.UsersRepo;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Service
 public class UsersServiceImpl implements UsersService {
 
 
@@ -26,6 +30,13 @@ public class UsersServiceImpl implements UsersService {
 
     @Override
     public UsersDto updateUser(UsersDto user, Long userId) {
+        Users oldUser = repo.findById(userId).get();
+        if (oldUser != null)
+            repo.deleteById(userId);
+        else
+            throw new NotFoundException("User with id : '" + userId + "' not Exist");
+
+      //  return  "User with id : '" + userId + "' deleted Successfully";
         return null;
     }
 
@@ -36,11 +47,18 @@ public class UsersServiceImpl implements UsersService {
 
     @Override
     public UsersDto getUser(Long userId) {
-        return null;
+        return this.model.map(repo.findById(userId), UsersDto.class);
     }
 
     @Override
     public String deleteUser(Long userId) {
-        return null;
+
+        Users user = repo.findById(userId).get();
+        if (user != null)
+            repo.deleteById(userId);
+        else
+            throw new NotFoundException("User with id : '" + userId + "' not Exist");
+
+        return  "User with id : '" + userId + "' deleted Successfully";
     }
 }
