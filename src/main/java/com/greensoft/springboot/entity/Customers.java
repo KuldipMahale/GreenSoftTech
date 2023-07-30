@@ -11,11 +11,11 @@ import lombok.Data;
 
 @Entity
 @Data
-@Table(schema = "green_soft", name = "customers")
+@Table(name = "customers")
 public class Customers {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "customer_id")
 	private Long customerId;
 	@Column(name = "customer_name")
