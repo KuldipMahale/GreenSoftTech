@@ -12,7 +12,9 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.swing.*;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class UsersServiceImpl implements UsersService {
@@ -42,14 +44,14 @@ public class UsersServiceImpl implements UsersService {
 
     @Override
     public List<UsersDto> getAllUsers() {
-        return null;
+        if (repo.findAll().isEmpty())
+            throw new NotFoundException("Users Not Available");
+         return  repo.findAll().stream().map( users -> model.map( users , UsersDto.class)).collect(Collectors.toList());
     }
-
     @Override
     public UsersDto getUser(Long userId) {
         return this.model.map(repo.findById(userId), UsersDto.class);
     }
-
     @Override
     public String deleteUser(Long userId) {
 
