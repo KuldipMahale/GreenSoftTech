@@ -1,18 +1,14 @@
 package com.greensoft.springboot.service.impl;
 
 import com.greensoft.springboot.dto.UsersDto;
-import com.greensoft.springboot.entity.Customers;
 import com.greensoft.springboot.entity.Users;
 import com.greensoft.springboot.exception.NotFoundException;
-import com.greensoft.springboot.repository.CustomersRepository;
 import com.greensoft.springboot.repository.UsersRepo;
 import com.greensoft.springboot.service.UsersService;
-import com.greensoft.springboot.repository.UsersRepo;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import javax.swing.*;
 import java.util.List;
 import java.util.stream.Collectors;
 
