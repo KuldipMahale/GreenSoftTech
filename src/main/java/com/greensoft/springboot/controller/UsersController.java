@@ -1,9 +1,6 @@
 package com.greensoft.springboot.controller;
 
 import com.greensoft.springboot.dto.UsersDto;
-import com.greensoft.springboot.entity.Customers;
-import com.greensoft.springboot.entity.Users;
-import com.greensoft.springboot.service.CustomersService;
 import com.greensoft.springboot.service.UsersService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
