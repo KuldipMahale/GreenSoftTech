@@ -2,6 +2,7 @@ package com.greensoft.springboot.service.impl;
 
 import com.greensoft.springboot.dto.CountryDto;
 import com.greensoft.springboot.entity.Country;
+import com.greensoft.springboot.exception.NotFoundException;
 import com.greensoft.springboot.repository.CountryRepo;
 import com.greensoft.springboot.service.CountryService;
 import org.modelmapper.ModelMapper;
@@ -9,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class CountryServiceImpl implements CountryService {
@@ -33,16 +35,28 @@ public class CountryServiceImpl implements CountryService {
 
     @Override
     public List<CountryDto> getAllCountrys() {
-        return null;
+        if(repo.findAll().isEmpty())
+            throw new NotFoundException("User are Not Found");
+        return repo.findAll().stream().map(country -> mapper.map(country, CountryDto.class)).collect(Collectors.toList());
     }
 
     @Override
     public CountryDto getCountry(Long countryId) {
-        return null;
+        repo.findById(countryId).get();
+        if(repo.findById(countryId).get() != null)
+            return mapper.map(repo.findById(countryId).get(), CountryDto.class);
+        else
+            throw new NotFoundException("Country Not Found with countryId = "+countryId);
     }
 
     @Override
     public String deleteCountry(Long countryId) {
-        return null;
+        repo.findById(countryId).get();
+        if(repo.findById(countryId).get() != null) {
+            repo.deleteById(countryId);
+            return "Deleted Successfuly with countryId :: " + countryId;
+        } else {
+            throw new NotFoundException("Country Not Available with countryId = " + countryId);
+        }
     }
 }

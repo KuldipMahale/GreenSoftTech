@@ -8,6 +8,7 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -18,7 +19,7 @@ public class UsersController {
     private UsersService service;
 
     @PostMapping(value = "/save", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<UsersDto> saveUser(@RequestBody UsersDto user) {
+    public ResponseEntity<UsersDto> saveUser(@Valid @RequestBody UsersDto user) {
         UsersDto userDto = service.saveUser(user);
         return new ResponseEntity<>(userDto, HttpStatus.CREATED);
     }
