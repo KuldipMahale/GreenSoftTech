@@ -49,7 +49,7 @@ public class CountryServiceImpl implements CountryService {
     @Override
     public CountryDto getCountry(Long countryId) {
 
-        Country country = repo.findById(countryId).orElseThrow(() -> new NotFoundException("Country Not Found with countryId = "+countryId));
+        Country country = repo.findById(countryId).orElseThrow(() -> new NotFoundException("Country Not Found with countryId = " + countryId));
         return mapper.map(country, CountryDto.class);
 
 //        repo.findById(countryId).get();
@@ -58,6 +58,7 @@ public class CountryServiceImpl implements CountryService {
 //        else
 //            throw new NotFoundException("Country Not Found with countryId = "+countryId);
 //    }
+    }
 
     @Override
     public String deleteCountry(Long countryId) {
