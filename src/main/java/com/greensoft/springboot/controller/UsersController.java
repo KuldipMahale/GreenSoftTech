@@ -24,8 +24,8 @@ public class UsersController {
         return new ResponseEntity<>(userDto, HttpStatus.CREATED);
     }
 
-    @PutMapping(value = "/edit/{customerId}", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<UsersDto> updateUser(@PathVariable Long userId, @RequestBody UsersDto userDto) {
+    @PutMapping(value = "/edit/{userId}", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<UsersDto> updateUser( @Valid @RequestBody UsersDto userDto ,@PathVariable Long userId) {
         UsersDto usersDto = service.updateUser(userDto , userId);
         return new ResponseEntity<>(usersDto, HttpStatus.ACCEPTED);
     }

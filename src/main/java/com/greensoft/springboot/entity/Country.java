@@ -1,9 +1,12 @@
 package com.greensoft.springboot.entity;
 
+import lombok.Data;
+
 import javax.persistence.*;
 
+@Data
 @Entity
-@Table(name = "country")
+@Table(name = "countrytab")
 public class Country {
 
     @Id

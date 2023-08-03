@@ -1,8 +1,10 @@
 package com.greensoft.springboot.dto;
 
+import lombok.Data;
+
 import javax.validation.constraints.NotEmpty;
 
-
+@Data
 public class CountryDto {
 
 

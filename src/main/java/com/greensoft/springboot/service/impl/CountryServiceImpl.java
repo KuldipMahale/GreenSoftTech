@@ -28,9 +28,15 @@ public class CountryServiceImpl implements CountryService {
 
     @Override
     public CountryDto updateCountry(CountryDto country, Long countryId) {
-        repo.findById(countryId);
-
-        return null;
+        Country existingCountry = repo.findById(countryId).get();
+        if(repo.findById(countryId).isPresent() && existingCountry != null) {
+            existingCountry.setCountryName(country.getCountryName());
+            existingCountry.setDiscription(country.getDiscription());
+            existingCountry.setStatus(country.getStatus());
+            return  mapper.map(repo.save(existingCountry), CountryDto.class);
+        } else {
+            throw new NotFoundException("Country Not Found with countryId = " + countryId);
+        }
     }
 
     @Override
