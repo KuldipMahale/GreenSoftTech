@@ -18,6 +18,11 @@ public class CountryController {
     @Autowired
     private CountryService service;
 
+    @GetMapping("/msg")
+    public ResponseEntity<String> getMsg(){
+        return  new ResponseEntity<>("Welcome",HttpStatus.OK);
+    }
+
     @PostMapping(value = "/save", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<CountryDto> saveUser(@Valid @RequestBody CountryDto country) {
         CountryDto countryDto = service.saveCountry(country);

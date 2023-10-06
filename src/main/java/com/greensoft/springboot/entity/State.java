@@ -6,22 +6,26 @@ import javax.persistence.*;
 
 @Data
 @Entity
-@Table(name = "countrytab")
-public class Country {
+@Table(name = "statetab")
+public class State {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "countryId")
-    private Long countryId;
+    @Column(name = "stateId")
+    private Long stateId;
 
-    @Column(name = "countryName")
-    private String countryName;
+    @Column(name = "stateName")
+    private String stateName;
 
     @Column(name = "description")
     private String discription;
 
     @Column(name = "status")
     private Boolean status;
+
+    @OneToOne
+    @JoinColumn(name = "countryId")
+    private Country country;
 
 
 }
