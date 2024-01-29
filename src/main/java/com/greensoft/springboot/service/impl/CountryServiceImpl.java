@@ -75,4 +75,9 @@ public class CountryServiceImpl implements CountryService {
             throw new NotFoundException("Country Not Available with countryId = " + countryId);
         }
     }
+
+    @Override
+    public Country findByCountryName(String userName){
+        return repo.findByCountryName(userName);
+    }
 }

@@ -21,7 +21,7 @@ public class Country {
     private String discription;
 
     @Column(name = "status")
-    private Boolean status;
+    private Integer status;
 
 
 }

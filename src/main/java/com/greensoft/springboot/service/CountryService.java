@@ -1,6 +1,7 @@
 package com.greensoft.springboot.service;
 
 import com.greensoft.springboot.dto.CountryDto;
+import com.greensoft.springboot.entity.Country;
 
 import java.util.List;
 
@@ -15,4 +16,6 @@ public interface CountryService {
     public CountryDto getCountry(Long countryId);
 
     public String deleteCountry(Long countryId);
+
+    Country findByCountryName(String userName);
 }

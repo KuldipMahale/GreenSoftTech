@@ -9,8 +9,6 @@ import javax.validation.constraints.NotEmpty;
 public class CountryDto {
 
 
-    @NotEmpty
-    @NotBlank
     private Long countryId;
 
     @NotEmpty
@@ -20,8 +18,6 @@ public class CountryDto {
     @NotBlank
     private String discription;
 
-    @NotEmpty
-    @NotBlank
-    private Boolean status;
+    private Integer status;
 
 }

@@ -2,6 +2,7 @@ package com.greensoft.springboot.service;
 
 import com.greensoft.springboot.dto.UsersDto;
 import com.greensoft.springboot.entity.Customers;
+import com.greensoft.springboot.entity.UserValidate;
 import com.greensoft.springboot.entity.Users;
 
 import java.util.List;
@@ -19,4 +20,5 @@ public interface UsersService {
 
     public String deleteUser(Long userId);
 
+    public Boolean findByUsername(UserValidate user);
 }

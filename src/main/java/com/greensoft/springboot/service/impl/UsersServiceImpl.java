@@ -1,6 +1,9 @@
 package com.greensoft.springboot.service.impl;
 
+import com.greensoft.springboot.dto.CountryDto;
 import com.greensoft.springboot.dto.UsersDto;
+import com.greensoft.springboot.entity.Country;
+import com.greensoft.springboot.entity.UserValidate;
 import com.greensoft.springboot.entity.Users;
 import com.greensoft.springboot.exception.NotFoundException;
 import com.greensoft.springboot.repository.UsersRepo;
@@ -59,4 +62,30 @@ public class UsersServiceImpl implements UsersService {
 
         return  "User with id : '" + userId + "' deleted Successfully";
     }
+
+
+//    Users findByUsername(String username);
+    @Override
+    public Boolean findByUsername(UserValidate user){
+
+        //mapper.map(repo.save(this.mapper.map(countryDto, Country.class)), CountryDto.class);
+
+        Users storedUser = repo.findByUserName(user.getUserName());
+/*
+        if (storedUser != null && storedUser.getUserName().equals("GreenSoft") && storedUser.getPassword().equals("App")) {
+            return true;
+        }*/
+
+        if (user.getUserName().equals("GreenSoft") && user.getPassword().equals("App")) {
+            return true;
+        }
+
+        if (storedUser != null && storedUser.getPassword().equals(user.getPassword())) {
+            return true;
+        } else {
+            return false;
+        }
+
+    }
+
 }

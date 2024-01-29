@@ -1,7 +1,10 @@
 package com.greensoft.springboot.controller;
 
 import com.greensoft.springboot.dto.CountryDto;
+import com.greensoft.springboot.entity.Country;
 import com.greensoft.springboot.service.CountryService;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -11,12 +14,17 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 import java.util.List;
 
+@CrossOrigin("*")
 @RestController
 @RequestMapping("/country")
 public class CountryController {
 
     @Autowired
     private CountryService service;
+
+
+
+    private Log log =  LogFactory.getLog(CountryController.class);
 
     @GetMapping("/msg")
     public ResponseEntity<String> getMsg(){
@@ -25,6 +33,7 @@ public class CountryController {
 
     @PostMapping(value = "/save", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<CountryDto> saveUser(@Valid @RequestBody CountryDto country) {
+        log.info("Here is My Log ************************************************");
         CountryDto countryDto = service.saveCountry(country);
         return new ResponseEntity<>(countryDto, HttpStatus.CREATED);
     }
@@ -51,5 +60,11 @@ public class CountryController {
     public ResponseEntity<String> deleteCustomer(@PathVariable Long countryId) {
         String message = service.deleteCountry(countryId);
         return new ResponseEntity<>(message, HttpStatus.ACCEPTED);
+    }
+
+    @GetMapping(value = "/find/{countryName}", produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<Country> getCoutryByName(@PathVariable String countryName) {
+        Country countryDto = service.findByCountryName(countryName);
+        return new ResponseEntity<>(countryDto, HttpStatus.OK);
     }
 }

@@ -1,6 +1,8 @@
 package com.greensoft.springboot.controller;
 
 import com.greensoft.springboot.dto.UsersDto;
+import com.greensoft.springboot.entity.UserValidate;
+import com.greensoft.springboot.entity.Users;
 import com.greensoft.springboot.service.UsersService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -11,6 +13,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 import java.util.List;
 
+@CrossOrigin("*")
 @RestController
 @RequestMapping( "/user")
 public class UsersController {
@@ -46,5 +49,15 @@ public class UsersController {
     public ResponseEntity<String> deleteCustomer(@PathVariable Long userId) {
         String message = service.deleteUser(userId);
         return new ResponseEntity<>(message, HttpStatus.ACCEPTED);
+    }
+
+    @PostMapping(value = "/login-validate", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<Boolean> validateUser(@Valid @RequestBody UserValidate user) {
+//        Users userDto = service.findByUsername(userDto);
+
+        System.out.println("******************************************************");
+        System.out.println(service.findByUsername(user));
+        System.out.println("******************************************************");
+        return new ResponseEntity<>(service.findByUsername(user), HttpStatus.OK);
     }
 }

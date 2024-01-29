@@ -3,6 +3,8 @@ package com.greensoft.springboot.entity;
 import lombok.Data;
 
 import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Table(name = "users")
@@ -11,9 +13,9 @@ public class Users {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "user_id")
-    private Long userId;
-    @Column(name = "user_name")
+    @Column(name = "userId")
+    private Integer userId;
+    @Column(name = "userName")
     private String userName;
     @Column(name = "password")
     private String password;
@@ -45,7 +47,13 @@ public class Users {
     private String countryCode;
     @Column(name = "status")
     private String status;
+/*
 
+    @ManyToMany
+    @JoinTable(name= "user_role",joinColumns=@JoinColumn(name = "user",referencedColumnName = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "role",referencedColumnName = "id"))
+    private Set<Role> roles = new HashSet<>();
+*/
 
 
 }
