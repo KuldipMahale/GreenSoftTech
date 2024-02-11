@@ -10,6 +10,7 @@ import com.greensoft.springboot.repository.UsersRepo;
 import com.greensoft.springboot.service.UsersService;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -24,13 +25,17 @@ public class UsersServiceImpl implements UsersService {
 
     @Autowired
     private ModelMapper model;
+
+    @Autowired
+    private PasswordEncoder passwordEncoder;;
     @Override
-    public UsersDto saveUser(UsersDto user) {
-        return this.model.map(this.model.map(user, Users.class),UsersDto.class) ;
+    public UsersDto saveUser(UsersDto userDto) {
+        userDto.setPassword(this.passwordEncoder.encode(userDto.getPassword()));
+        return   model.map(repo.save(this.model.map(userDto, Users.class)), UsersDto.class);
     }
 
     @Override
-    public UsersDto updateUser(UsersDto user, Long userId) {
+    public UsersDto updateUser(UsersDto user, Integer userId) {
         Users oldUser = repo.findById(userId).get();
         if (oldUser != null)
             repo.deleteById(userId);
@@ -48,11 +53,11 @@ public class UsersServiceImpl implements UsersService {
          return  repo.findAll().stream().map( users -> model.map( users , UsersDto.class)).collect(Collectors.toList());
     }
     @Override
-    public UsersDto getUser(Long userId) {
+    public UsersDto getUser(Integer userId) {
         return this.model.map(repo.findById(userId), UsersDto.class);
     }
     @Override
-    public String deleteUser(Long userId) {
+    public String deleteUser(Integer userId) {
 
         Users user = repo.findById(userId).get();
         if (user != null)
@@ -70,7 +75,7 @@ public class UsersServiceImpl implements UsersService {
 
         //mapper.map(repo.save(this.mapper.map(countryDto, Country.class)), CountryDto.class);
 
-        Users storedUser = repo.findByUserName(user.getUserName());
+        Users storedUser = repo.findByUserName(user.getUserName()).get();
 /*
         if (storedUser != null && storedUser.getUserName().equals("GreenSoft") && storedUser.getPassword().equals("App")) {
             return true;
@@ -86,6 +91,11 @@ public class UsersServiceImpl implements UsersService {
             return false;
         }
 
+    }
+
+    @Override
+    public Users lodaUserByUserName(String userName) {
+        return null;
     }
 
 }

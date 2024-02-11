@@ -44,7 +44,7 @@ public class CountryController {
         return new ResponseEntity<>(countryDtos, HttpStatus.ACCEPTED);
     }
 
-    @GetMapping(value = "/user-list", produces = MediaType.APPLICATION_JSON_VALUE)
+    @GetMapping(value = "/country-list", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<List<CountryDto>> getAllCustomers() {
         List<CountryDto> countryDtos = service.getAllCountrys();
         return new ResponseEntity<>(countryDtos, HttpStatus.OK);

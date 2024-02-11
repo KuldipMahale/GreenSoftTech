@@ -6,6 +6,8 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import java.security.Principal;
+
 @Component
 @RequestMapping("/test")
 public class TestController {
@@ -13,5 +15,12 @@ public class TestController {
     @GetMapping("/msg")
     public ResponseEntity<String> getMsg(){
         return  new ResponseEntity<>("Welcome to Test Controller", HttpStatus.OK);
+    }
+
+
+    @GetMapping("/who")
+    public ResponseEntity<String> getLoggedUserName(Principal principal){
+        String loggedUserName = principal.getName();
+        return new ResponseEntity<>(loggedUserName,HttpStatus.OK);
     }
 }

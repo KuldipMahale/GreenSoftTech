@@ -1,6 +1,8 @@
 package com.greensoft.springboot.entity;
 
 import lombok.Data;
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
 
 import javax.persistence.*;
 
@@ -12,20 +14,27 @@ public class State {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "stateId")
-    private Long stateId;
+    private Integer stateId;
 
-    @Column(name = "stateName")
+    @Column(name = "stateName",unique = true)
     private String stateName;
 
     @Column(name = "description")
     private String discription;
 
     @Column(name = "status")
-    private Boolean status;
+    private Integer status;
 
-    @OneToOne
-    @JoinColumn(name = "countryId")
+//    @OneToOne
+//    @JoinColumn(name = "countryId")
+//    private Country country;
+
+//    @Column(unique = true)
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "countryId", insertable = true, updatable = true)
+    @Fetch(FetchMode.JOIN)
     private Country country;
 
+    private String countryName;
 
 }

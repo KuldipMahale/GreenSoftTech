@@ -15,7 +15,6 @@ public class CountryDto {
     @NotBlank
     private String countryName;
 
-    @NotBlank
     private String discription;
 
     private Integer status;

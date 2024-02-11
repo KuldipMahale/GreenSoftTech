@@ -3,7 +3,9 @@ package com.greensoft.springboot.repository;
 import com.greensoft.springboot.entity.Users;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface UsersRepo extends JpaRepository<Users,Long> {
+import java.util.Optional;
 
-    Users findByUserName(String userName);
+public interface UsersRepo extends JpaRepository<Users,Integer> {
+
+    Optional<Users> findByUserName(String userName);
 }

@@ -3,6 +3,7 @@ package com.greensoft.springboot.entity;
 import lombok.Data;
 
 import javax.persistence.*;
+import java.util.Set;
 
 @Data
 @Entity
@@ -14,7 +15,7 @@ public class Country {
     @Column(name = "countryId")
     private Long countryId;
 
-    @Column(name = "countryName")
+    @Column(name = "countryName",unique = true)
     private String countryName;
 
     @Column(name = "description")
@@ -22,6 +23,8 @@ public class Country {
 
     @Column(name = "status")
     private Integer status;
-
+//
+//    @OneToMany(targetEntity = State.class, mappedBy = "stateId", orphanRemoval = false, fetch = FetchType.LAZY)
+//    private Set<State> states;
 
 }

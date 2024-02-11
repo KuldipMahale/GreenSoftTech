@@ -12,13 +12,15 @@ public interface UsersService {
 
     public UsersDto saveUser(UsersDto user);
 
-    public UsersDto updateUser(UsersDto user,Long userId);
+    public UsersDto updateUser(UsersDto user, Integer userId);
 
     public List<UsersDto> getAllUsers();
 
-    public UsersDto getUser(Long userId);
+    public UsersDto getUser(Integer userId);
 
-    public String deleteUser(Long userId);
+    public String deleteUser(Integer userId);
 
     public Boolean findByUsername(UserValidate user);
+
+    Users lodaUserByUserName(String userName);
 }

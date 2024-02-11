@@ -28,7 +28,7 @@ public class UsersController {
     }
 
     @PutMapping(value = "/edit/{userId}", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<UsersDto> updateUser( @Valid @RequestBody UsersDto userDto ,@PathVariable Long userId) {
+    public ResponseEntity<UsersDto> updateUser( @Valid @RequestBody UsersDto userDto ,@PathVariable Integer userId) {
         UsersDto usersDto = service.updateUser(userDto , userId);
         return new ResponseEntity<>(usersDto, HttpStatus.ACCEPTED);
     }
@@ -40,13 +40,13 @@ public class UsersController {
     }
 
     @GetMapping(value = "/get/{userId}", produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<UsersDto> getUserById(@PathVariable Long userId) {
+    public ResponseEntity<UsersDto> getUserById(@PathVariable Integer userId) {
         UsersDto usersDto = service.getUser(userId);
         return new ResponseEntity<>(usersDto, HttpStatus.OK);
     }
 
     @DeleteMapping(value = "/delete/{userId}")
-    public ResponseEntity<String> deleteCustomer(@PathVariable Long userId) {
+    public ResponseEntity<String> deleteCustomer(@PathVariable Integer userId) {
         String message = service.deleteUser(userId);
         return new ResponseEntity<>(message, HttpStatus.ACCEPTED);
     }
