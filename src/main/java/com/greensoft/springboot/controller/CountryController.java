@@ -11,7 +11,6 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import javax.validation.Valid;
 import java.util.List;
 
 @CrossOrigin("*")
@@ -32,14 +31,14 @@ public class CountryController {
     }
 
     @PostMapping(value = "/save", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<CountryDto> saveUser(@Valid @RequestBody CountryDto country) {
+    public ResponseEntity<CountryDto> saveUser(@RequestBody CountryDto country) {
         log.info("Here is My Log ************************************************");
         CountryDto countryDto = service.saveCountry(country);
         return new ResponseEntity<>(countryDto, HttpStatus.CREATED);
     }
 
     @PutMapping(value = "/edit/{countryId}", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<CountryDto> updateCountry( @Valid @RequestBody CountryDto countryDto ,@PathVariable Long countryId) {
+    public ResponseEntity<CountryDto> updateCountry(@RequestBody CountryDto countryDto ,@PathVariable Long countryId) {
         CountryDto countryDtos = service.updateCountry(countryDto , countryId);
         return new ResponseEntity<>(countryDtos, HttpStatus.ACCEPTED);
     }

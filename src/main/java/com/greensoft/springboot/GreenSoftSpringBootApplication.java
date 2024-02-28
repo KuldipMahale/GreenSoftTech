@@ -11,21 +11,22 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import java.sql.SQLOutput;
 
 @SpringBootApplication
-public class GreenSoftSpringBootApplication implements CommandLineRunner {
+public class GreenSoftSpringBootApplication {//implements CommandLineRunner {
 
-	@Autowired
-	private PasswordEncoder passwordEncoder;
+
 	public static void main(String[] args) {
 		SpringApplication.run(GreenSoftSpringBootApplication.class, args);
 	}
 
 	@Bean
 	public ModelMapper model(){ return new ModelMapper();}
+/*
 
 	@Override
 	public void run(String... args) throws Exception {
 		System.out.println(this.passwordEncoder.encode("GreenSoft"));
 	}
+*/
 
 /*
 	@Override

@@ -3,10 +3,6 @@ package com.greensoft.springboot.dto;
 import com.greensoft.springboot.entity.Area;
 import lombok.Data;
 
-import javax.persistence.Column;
-import javax.persistence.Id;
-
-
 @Data
 public class LocationDto {
 

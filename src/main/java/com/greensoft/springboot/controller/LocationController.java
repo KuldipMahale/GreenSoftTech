@@ -1,15 +1,10 @@
 package com.greensoft.springboot.controller;
 
-import com.greensoft.springboot.dto.CityDto;
 import com.greensoft.springboot.dto.LocationDto;
 import com.greensoft.springboot.entity.Area;
-import com.greensoft.springboot.entity.City;
 import com.greensoft.springboot.entity.Location;
-import com.greensoft.springboot.entity.State;
 import com.greensoft.springboot.service.AreaService;
-import com.greensoft.springboot.service.CityService;
 import com.greensoft.springboot.service.LocationService;
-import com.greensoft.springboot.service.StateService;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,7 +13,6 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import javax.validation.Valid;
 import java.util.List;
 
 @CrossOrigin("*")
@@ -42,14 +36,14 @@ public class LocationController {
     }
 
     @PostMapping(value = "/save", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<LocationDto> saveLoc(@Valid @RequestBody LocationDto loc) {
+    public ResponseEntity<LocationDto> saveLoc(@RequestBody LocationDto loc) {
         log.info("Here is My Log ************************************************");
         LocationDto locationDto = service.saveLocation(loc);
         return new ResponseEntity<>(locationDto, HttpStatus.CREATED);
     }
 
     @PutMapping(value = "/edit/{locId}", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<LocationDto> updateLoc( @Valid @RequestBody LocationDto loc ,@PathVariable Integer locId) {
+    public ResponseEntity<LocationDto> updateLoc(@RequestBody LocationDto loc ,@PathVariable Integer locId) {
         System.out.println("********************************************");
         LocationDto locationDtos = service.updateLocation(loc , locId);
         return new ResponseEntity<>(locationDtos, HttpStatus.ACCEPTED);

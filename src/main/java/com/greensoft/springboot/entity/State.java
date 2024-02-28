@@ -1,10 +1,10 @@
 package com.greensoft.springboot.entity;
 
+import jakarta.persistence.*;
 import lombok.Data;
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
 
-import javax.persistence.*;
 
 @Data
 @Entity

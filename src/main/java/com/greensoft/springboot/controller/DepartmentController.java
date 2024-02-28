@@ -13,7 +13,6 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import javax.validation.Valid;
 import java.util.List;
 
 @CrossOrigin("*")
@@ -37,14 +36,14 @@ public class DepartmentController {
     }
 
     @PostMapping(value = "/save", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<DepartmentDto> saveDept(@Valid @RequestBody DepartmentDto dept) {
+    public ResponseEntity<DepartmentDto> saveDept(@RequestBody DepartmentDto dept) {
         log.info("Here is My Log ************************************************");
         DepartmentDto dto = service.saveDepartment(dept);
         return new ResponseEntity<>(dto, HttpStatus.CREATED);
     }
 
     @PutMapping(value = "/edit/{deptId}", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<DepartmentDto> updateDept( @Valid @RequestBody DepartmentDto deptDto ,@PathVariable Integer deptId) {
+    public ResponseEntity<DepartmentDto> updateDept( @RequestBody DepartmentDto deptDto ,@PathVariable Integer deptId) {
         System.out.println("********************************************");
         DepartmentDto deptDtos = service.updateDepartment(deptDto , deptId);
         return new ResponseEntity<>(deptDtos, HttpStatus.ACCEPTED);

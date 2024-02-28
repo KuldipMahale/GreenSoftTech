@@ -2,8 +2,6 @@ package com.greensoft.springboot.dto;
 
 import lombok.Data;
 
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotEmpty;
 
 @Data
 public class CountryDto {
@@ -11,8 +9,6 @@ public class CountryDto {
 
     private Long countryId;
 
-    @NotEmpty
-    @NotBlank
     private String countryName;
 
     private String discription;

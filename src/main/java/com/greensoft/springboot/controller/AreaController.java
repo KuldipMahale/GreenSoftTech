@@ -1,7 +1,6 @@
 package com.greensoft.springboot.controller;
 
 import com.greensoft.springboot.dto.AreaDto;
-import com.greensoft.springboot.dto.CityDto;
 import com.greensoft.springboot.entity.Area;
 import com.greensoft.springboot.entity.City;
 import com.greensoft.springboot.entity.State;
@@ -16,8 +15,8 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import javax.validation.Valid;
 import java.util.List;
+
 
 @CrossOrigin("*")
 @RestController
@@ -43,14 +42,14 @@ public class AreaController {
     }
 
     @PostMapping(value = "/save", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<AreaDto> saveState(@Valid @RequestBody AreaDto area) {
+    public ResponseEntity<AreaDto> saveState(@RequestBody AreaDto area) {
         log.info("Here is My Log ************************************************");
         AreaDto areaDto = service.saveArea(area);
         return new ResponseEntity<>(areaDto, HttpStatus.CREATED);
     }
 
     @PutMapping(value = "/edit/{areaId}", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<AreaDto> updateArea( @Valid @RequestBody AreaDto areaDto ,@PathVariable Integer areaId) {
+    public ResponseEntity<AreaDto> updateArea(@RequestBody AreaDto areaDto ,@PathVariable Integer areaId) {
         System.out.println("********************************************");
         AreaDto areaDtos = service.updateArea(areaDto , areaId);
         return new ResponseEntity<>(areaDtos, HttpStatus.ACCEPTED);

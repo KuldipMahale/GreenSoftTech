@@ -1,8 +1,6 @@
 package com.greensoft.springboot.controller;
 
-import com.greensoft.springboot.dto.AreaDto;
 import com.greensoft.springboot.dto.CityDto;
-import com.greensoft.springboot.dto.StateDto;
 import com.greensoft.springboot.entity.City;
 import com.greensoft.springboot.entity.State;
 import com.greensoft.springboot.service.CityService;
@@ -15,7 +13,6 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import javax.validation.Valid;
 import java.util.List;
 
 @CrossOrigin("*")
@@ -39,14 +36,14 @@ public class CityController {
     }
 
     @PostMapping(value = "/save", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<CityDto> saveState(@Valid @RequestBody CityDto city) {
+    public ResponseEntity<CityDto> saveState(@RequestBody CityDto city) {
         log.info("Here is My Log ************************************************");
         CityDto cityDto = service.saveCity(city);
         return new ResponseEntity<>(cityDto, HttpStatus.CREATED);
     }
 
     @PutMapping(value = "/edit/{cityId}", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<CityDto> updateState( @Valid @RequestBody CityDto cityDto ,@PathVariable Integer cityId) {
+    public ResponseEntity<CityDto> updateState(@RequestBody CityDto cityDto ,@PathVariable Integer cityId) {
         System.out.println("********************************************");
         CityDto cityDtos = service.updateCity(cityDto , cityId);
         return new ResponseEntity<>(cityDtos, HttpStatus.ACCEPTED);

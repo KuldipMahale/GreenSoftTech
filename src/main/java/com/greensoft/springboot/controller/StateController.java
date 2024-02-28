@@ -1,10 +1,7 @@
 package com.greensoft.springboot.controller;
 
-import com.greensoft.springboot.dto.CountryDto;
 import com.greensoft.springboot.dto.StateDto;
-import com.greensoft.springboot.entity.Country;
 import com.greensoft.springboot.entity.State;
-import com.greensoft.springboot.service.CountryService;
 import com.greensoft.springboot.service.StateService;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -14,7 +11,6 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import javax.validation.Valid;
 import java.util.List;
 
 @CrossOrigin("*")
@@ -35,7 +31,7 @@ public class StateController {
     }
 
     @PostMapping(value = "/save", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<StateDto> saveState(@Valid @RequestBody StateDto state) {
+    public ResponseEntity<StateDto> saveState( @RequestBody StateDto state) {
         log.info("Here is My Log ************************************************");
         StateDto stateDto = service.saveState(state);
 
@@ -43,7 +39,7 @@ public class StateController {
     }
 
     @PutMapping(value = "/edit/{stateId}", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<StateDto> updateState( @Valid @RequestBody StateDto stateDto ,@PathVariable Integer stateId) {
+    public ResponseEntity<StateDto> updateState(@RequestBody StateDto stateDto ,@PathVariable Integer stateId) {
         System.out.println("********************************************");
         StateDto stateDtos = service.updateState(stateDto , stateId);
         return new ResponseEntity<>(stateDtos, HttpStatus.ACCEPTED);
