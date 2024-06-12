@@ -20,17 +20,31 @@ public class SecurityConfig { //extends WebSecurityConfigurerAdapter {
     @Autowired
     private JwtAuthenticationFilter filter;
 
+
+
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
 
         http.csrf(csrf -> csrf.disable())
-                .authorizeRequests().
-                requestMatchers("/home/**").authenticated().requestMatchers("/auth/login").permitAll()
-                .anyRequest()
-                .authenticated()
-                .and().exceptionHandling(ex -> ex.authenticationEntryPoint(point))
+                .cors(cors -> cors.disable())
+                .authorizeHttpRequests(
+                        auth -> auth.requestMatchers("/home/**").authenticated()
+                                .requestMatchers("/auth/login").permitAll()
+                                .anyRequest().authenticated())
+                .exceptionHandling(ex -> ex.authenticationEntryPoint(point))
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS));
-        http.addFilterBefore(filter, UsernamePasswordAuthenticationFilter.class);
+                http.addFilterBefore(filter, UsernamePasswordAuthenticationFilter.class);
+
+
+
+//        http.csrf(csrf -> csrf.disable())
+//                .authorizeRequests().
+//                requestMatchers("/home/**").authenticated().requestMatchers("/auth/login").permitAll()
+//                .anyRequest()
+//                .authenticated()
+//                .and().exceptionHandling(ex -> ex.authenticationEntryPoint(point))
+//                .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS));
+//        http.addFilterBefore(filter, UsernamePasswordAuthenticationFilter.class);
         return http.build();
     }
         /*http.csrf(csrf -> csrf.disable())

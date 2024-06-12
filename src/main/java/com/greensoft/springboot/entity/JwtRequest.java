@@ -1,9 +1,12 @@
 package com.greensoft.springboot.entity;
 
-import lombok.Builder;
-import lombok.Data;
+import lombok.*;
 
-@Data
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
+@ToString
 @Builder
 public class JwtRequest {
 

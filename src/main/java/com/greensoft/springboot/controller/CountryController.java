@@ -13,9 +13,9 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@CrossOrigin("*")
 @RestController
 @RequestMapping("/country")
+@CrossOrigin("*")
 public class CountryController {
 
     @Autowired
@@ -67,3 +67,4 @@ public class CountryController {
         return new ResponseEntity<>(countryDto, HttpStatus.OK);
     }
 }
+

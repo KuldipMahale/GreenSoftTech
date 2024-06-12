@@ -1,13 +1,10 @@
 package com.greensoft.springboot.config;
 
 
-import com.greensoft.springboot.service.UsersService;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
-import org.springframework.security.config.annotation.web.builders.HttpSecurity;
-import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -37,11 +34,15 @@ public class GreenSoftConfig  {
 
     @Bean
     public UserDetailsService userDetailsService() {
-        UserDetails userDetails = User.builder().
-                username("DURGESH")
-                .password(passwordEncoder().encode("DURGESH")).roles("ADMIN").
+        UserDetails userDetails1 = User.builder().
+                username("GreenSoft")
+                .password(passwordEncoder().encode("GreenSoft")).roles("ADMIN").
                 build();
-        return new InMemoryUserDetailsManager(userDetails);
+        UserDetails userDetails2 = User.builder().
+                username("Kuldip")
+                .password(passwordEncoder().encode("Mahale")).roles("ADMIN").
+                build();
+        return new InMemoryUserDetailsManager(userDetails1,userDetails2);
     }
 
     @Bean

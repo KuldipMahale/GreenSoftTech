@@ -40,11 +40,10 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
         logger.info(" Header :  {}", requestHeader);
         String username = null;
         String token = null;
-        if (requestHeader != null && requestHeader.startsWith("Bearer")) {
+        if (requestHeader != null && requestHeader.startsWith("GreenSoft")) {
             //looking good
-            token = requestHeader.substring(7);
+            token = requestHeader.substring(10);
             try {
-
                 username = this.jwtHelper.getUsernameFromToken(token);
 
             } catch (IllegalArgumentException e) {

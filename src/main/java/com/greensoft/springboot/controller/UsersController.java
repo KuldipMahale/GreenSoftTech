@@ -1,5 +1,7 @@
 package com.greensoft.springboot.controller;
-
+public class UsersController {
+}
+/*
 import com.greensoft.springboot.dto.UsersDto;
 import com.greensoft.springboot.entity.UserValidate;
 import com.greensoft.springboot.service.UsersService;
@@ -66,3 +68,4 @@ public class UsersController {
     }
 
 }
+*/
