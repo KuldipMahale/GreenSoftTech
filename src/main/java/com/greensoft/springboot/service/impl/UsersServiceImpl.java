@@ -1,9 +1,9 @@
 package com.greensoft.springboot.service.impl;
 
-import com.greensoft.springboot.service.UsersService;
+//import com.greensoft.springboot.service.UsersService;
 
-public class UsersServiceImpl {}
-/*
+//public class UsersServiceImpl {}
+
 import com.greensoft.springboot.dto.CountryDto;
 import com.greensoft.springboot.dto.UsersDto;
 import com.greensoft.springboot.entity.Country;
@@ -80,11 +80,11 @@ public class UsersServiceImpl implements UsersService {
         //mapper.map(repo.save(this.mapper.map(countryDto, Country.class)), CountryDto.class);
 
         Users storedUser = repo.findByUserName(user.getUserName()).get();
-*/
-/*
+
+
         if (storedUser != null && storedUser.getUserName().equals("GreenSoft") && storedUser.getPassword().equals("App")) {
             return true;
-        }*//*
+        }
 
 
         if (user.getUserName().equals("GreenSoft") && user.getPassword().equals("App")) {
@@ -105,4 +105,4 @@ public class UsersServiceImpl implements UsersService {
     }
 
 }
-*/
+

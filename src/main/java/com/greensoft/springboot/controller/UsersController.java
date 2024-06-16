@@ -1,7 +1,7 @@
 package com.greensoft.springboot.controller;
-public class UsersController {
-}
-/*
+//public class UsersController {
+//}
+///*
 import com.greensoft.springboot.dto.UsersDto;
 import com.greensoft.springboot.entity.UserValidate;
 import com.greensoft.springboot.service.UsersService;
@@ -22,7 +22,7 @@ public class UsersController {
     @Autowired
     private UsersService service;
 
-    @PostMapping(value = "/save", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
+    @PostMapping(value = "/save")
     public ResponseEntity<UsersDto> saveUser(@RequestBody UsersDto user) {
         UsersDto userDto = service.saveUser(user);
         return new ResponseEntity<>(userDto, HttpStatus.CREATED);
@@ -68,4 +68,3 @@ public class UsersController {
     }
 
 }
-*/

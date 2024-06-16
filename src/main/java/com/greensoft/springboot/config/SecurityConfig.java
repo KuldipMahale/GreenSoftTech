@@ -30,6 +30,12 @@ public class SecurityConfig { //extends WebSecurityConfigurerAdapter {
                 .authorizeHttpRequests(
                         auth -> auth.requestMatchers("/home/**").authenticated()
                                 .requestMatchers("/auth/login").permitAll()
+                                .requestMatchers("/country/**").permitAll()
+                                .requestMatchers("/user/**").permitAll()
+                                .requestMatchers("/state/**").permitAll()
+                                .requestMatchers("/city/**").permitAll()
+                                .requestMatchers("/area/**").permitAll()
+                                .requestMatchers("/loc/**").permitAll()
                                 .anyRequest().authenticated())
                 .exceptionHandling(ex -> ex.authenticationEntryPoint(point))
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS));
